@@ -1,0 +1,30 @@
+{
+  "name": "rollup-plugin-lgcjs",
+  "version": "0.0.4",
+  "description": "Rollup plugin for transpiling .xlgc files  + live editor support",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: still in alpha, tests will be added soon :)\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/librogamesland/rollup-plugin-lgcjs.git"
+  },
+  "keywords": [
+    "rollup-plugin",
+    "lgcjs",
+    "librogame",
+    "librogamesland"
+  ],
+  "author": "Luca Fabbian",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/librogamesland/rollup-plugin-lgcjs/issues"
+  },
+  "homepage": "https://github.com/librogamesland/rollup-plugin-lgcjs#readme",
+  "dependencies": {
+    "esm": "^3.2.25",
+    "jsdom": "^16.2.2",
+    "puppeteer-core": "^3.0.4"
+  }
+}
