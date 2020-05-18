@@ -11,6 +11,28 @@ const encoders = {
   'json': data => 'export default ' + JSON.stringify(data),
 }
 
+let lastbrowser = null
+
+function exitHandler(options, exitCode) {
+  if(lastbrowser) lastbrowser.close()
+}
+
+
+
+//do something when app is closing
+process.on('exit', exitHandler.bind(null,{cleanup:true}));
+
+//catches ctrl+c event
+process.on('SIGINT', exitHandler.bind(null, {exit:true}));
+
+// catches "kill pid" (for example: nodemon restart)
+process.on('SIGUSR1', exitHandler.bind(null, {exit:true}));
+process.on('SIGUSR2', exitHandler.bind(null, {exit:true}));
+
+//catches uncaught exceptions
+process.on('uncaughtException', exitHandler.bind(null, {exit:true}));
+
+
 /* Launch browser and
 expose functions */
 async function launchLgcjs(options) {
@@ -25,6 +47,7 @@ async function launchLgcjs(options) {
       console.log("Can't connect to " + options.browserURL)
       return
     }
+    lastbrowser = browser
     const page = options.newPage ? (await browser.newPage()) : (await browser.pages())[0];
 
     await page.exposeFunction('__lgcdevVersion', version => {
